@@ -1,0 +1,30 @@
+workflows:
+  ios-workflow:
+    name: iOS Build Workflow
+    max_build_duration: 120
+    instance_type: mac_mini_m2
+    working_directory: Frontend
+
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+
+    scripts:
+      - name: Get Flutter packages
+        script: |
+          flutter pub get
+
+      - name: Build iOS IPA
+        script: |
+          # Ensure you have ExportOptions.plist at Frontend/ios/ExportOptions.plist
+          flutter build ipa --release \
+            --export-options-plist=ios/ExportOptions.plist
+
+    artifacts:
+      - build/ios/ipa/*.ipa
+
+    publishing:
+      email:
+        recipients:
+          - zerodha805@gmail.com
