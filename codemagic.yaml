@@ -17,7 +17,7 @@ workflows:
 
       - name: Build iOS IPA
         script: |
-          # Ensure you have ExportOptions.plist at Frontend/ios/ExportOptions.plist
+          # Ensure ExportOptions.plist is at Frontend/ios/ExportOptions.plist
           flutter build ipa --release \
             --export-options-plist=ios/ExportOptions.plist
 
